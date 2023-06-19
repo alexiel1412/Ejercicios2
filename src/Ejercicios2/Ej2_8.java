@@ -7,43 +7,52 @@ public class Ej2_8
 	public static void main(String[] args)
 	{
 		Scanner teclado = new Scanner (System.in);
-		System.out.println("Introduzca el primer número:");
-		int num1 = teclado.nextInt();
-		System.out.println("Introduzca el segundo número:");
-		int num2 = teclado.nextInt();
+		double num1 = 0, num2 = 0, res;
 		System.out.println("Introduzca el calculo:");
 		System.out.println("\"+\" --- Suma.");
 		System.out.println("\"-\" --- Resta.");
 		System.out.println("\"*\" --- Multiplicación.");
 		System.out.println("\"/\" --- División.");
+		System.out.println("\"r\" --- Raíz.");
 		System.out.println("\"p\" --- Potencia.");
-		System.out.println("\"r\" --- Raiz.");
 		char oper = teclado.next().charAt(0);
+		if (oper == '+' || oper == '-' || oper == '*' || oper == '/' || oper == 'r' || oper == 'p')
+		{
+			System.out.println("Introduzca el primer número:");
+			num1 = teclado.nextInt();
+			if (oper != 'r')
+			{
+				System.out.println("Introduzca el segundo número:");
+				num2 = teclado.nextInt();
+			}
+		}
 		
 		switch (oper)
 		{
 			case '+':
+				res = num1 + num2;
 				System.out.println(num1 + " + " + num2 + " = " + (num1 + num2));
 				break;
 			case '-':
-				System.out.println(num1 + " - " + num2 + " = " + (num1 - num2));
+				res = num1 - num2;
 				break;
 			case '*':
-				System.out.println(num1 + " * " + num2 + " = " + (num1 * num2));
+				res = num1 * num2;
 				break;
 			case '/':
-				System.out.println(num1 + " / " + num2 + " = " + (num1 / (double) num2));
+				res = num1 / num2;
 				break;
 			case 'r':
-				System.out.println("Raiz cuadrada " + num1 + " = " + (Math.sqrt(num1)));
+				res = Math.sqrt(num1);
 				break;
 			case 'p':
-				System.out.println(num1 + " ^ " + num2 + " = " + (Math.pow(num1, num2)));
+				res = Math.pow(num1, num2);
 				break;
 			default:
 				System.out.println("Error, debe introducir una operación de la lista.");
-				break;
+				return;  // Para no lanzar el resultado si hay error
 		}
+		System.out.println(res);
 		teclado.close();
 	}
 }
